@@ -1,13 +1,12 @@
 package test
 
 import (
-	"fmt"
 	"sort"
 	"strings"
 	"testing"
 
-	"github.com/golangci/golangci-lint/pkg/lint/lintersdb"
-	"github.com/golangci/golangci-lint/test/testshared"
+	"github.com/anduril/golangci-lint/pkg/lint/lintersdb"
+	"github.com/anduril/golangci-lint/test/testshared"
 )
 
 func inSlice(s []string, v string) bool {
@@ -186,8 +185,7 @@ func TestEnabledLinters(t *testing.T) {
 			r := runner.RunCommandWithYamlConfig(c.cfg, "linters", runArgs...)
 			sort.StringSlice(c.el).Sort()
 
-			expectedLine := fmt.Sprintf("Active %d linters: [%s]", len(c.el), strings.Join(c.el, " "))
-			r.ExpectOutputContains(expectedLine)
+			r.ExpectOutputLinters(c.el)
 		})
 	}
 }

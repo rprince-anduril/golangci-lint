@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/golangci/golangci-lint/pkg/exitcodes"
-	"github.com/golangci/golangci-lint/pkg/logutils"
+	"github.com/anduril/golangci-lint/pkg/exitcodes"
+	"github.com/anduril/golangci-lint/pkg/logutils"
 )
 
 type LintRunner struct {
@@ -74,6 +74,19 @@ func (r *RunResult) ExpectOutputRegexp(s interface{}) *RunResult {
 
 func (r *RunResult) ExpectOutputContains(s string) *RunResult {
 	assert.Contains(r.t, r.output, s, "exit code is %d", r.exitCode)
+	return r
+}
+
+func (r *RunResult) ExpectOutputLinters(linters []string) *RunResult {
+	split := strings.Split(r.output, "Disabled by your configuration linters:")
+	if len(split) == 0 {
+		r.t.Errorf("no active linters")
+		return nil
+	}
+	activeLinters := split[0]
+	for _, l := range linters {
+		assert.Contains(r.t, activeLinters, l, "exit code is %d", r.exitCode)
+	}
 	return r
 }
 
