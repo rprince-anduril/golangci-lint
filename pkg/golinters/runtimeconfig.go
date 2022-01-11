@@ -83,7 +83,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 				} else {
 					// Using Get from RuntimeConfigV2
 					arg2 := call.Args[1]
-					checkPointerArg(arg2, "", "", arg2.Pos(), pass, "2nd",false)
+					checkPointerArg(arg2, "", "", arg2.Pos(), pass, "2nd", false)
 				}
 			}
 		}
