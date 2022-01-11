@@ -47,6 +47,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 	i.Preorder(nodeFilter, func(n ast.Node) {
 		call := n.(*ast.CallExpr)
 		target := typeutil.Callee(pass.TypesInfo, call)
+		fmt.Printf("%+v\n", target)
 		if target == nil {
 			return
 		} else if target.Pkg() == nil || !(target.Pkg().Path() == "ghe.anduril.dev/anduril/graphene-go/pkg/graphene" &&
