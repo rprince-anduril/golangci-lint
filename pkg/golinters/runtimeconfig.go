@@ -47,11 +47,11 @@ func run(pass *analysis.Pass) (interface{}, error) {
 	i.Preorder(nodeFilter, func(n ast.Node) {
 		call := n.(*ast.CallExpr)
 		target := typeutil.Callee(pass.TypesInfo, call)
-		numArgs := 3
 		if target == nil {
 			return
 		} else if target.Pkg() == nil || !(target.Pkg().Path() == "ghe.anduril.dev/anduril/graphene-go/pkg/graphene" &&
-			(target.Name() == getFn || target.Name() == subscribeFn)) || len(call.Args) != numArgs {
+			((target.Name() == getFn && (len(call.Args) == 2 || len(call.Args) == 3)) ||
+			(target.Name() == subscribeFn)  && len(call.Args) != 3)) {
 			return
 		}
 		if selector, ok := call.Fun.(*ast.SelectorExpr); ok {
