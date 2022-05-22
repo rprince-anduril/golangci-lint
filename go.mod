@@ -96,9 +96,9 @@ require (
 	github.com/yagipy/maintidx v1.0.0
 	github.com/yeya24/promlinter v0.1.1-0.20210918184747-d757024714a1
 	gitlab.com/bosi/decorder v0.2.1
-	golang.org/x/tools v0.1.10
+	golang.org/x/tools v0.1.11-0.20220513221640-090b14e8501f
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
-	honnef.co/go/tools v0.2.2
+	honnef.co/go/tools v0.3.2
 	mvdan.cc/gofumpt v0.3.0
 	mvdan.cc/interfacer v0.0.0-20180901003855-c20040233aed
 	mvdan.cc/unparam v0.0.0-20211214103731-d0ef000c54e5
