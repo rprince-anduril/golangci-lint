@@ -41,7 +41,7 @@ func NewRuntimeFormat() *goanalysis.Linter {
 		nil,
 	).WithLoadMode(goanalysis.LoadModeTypesInfo)
 }
-func run(pass *analysis.Pass) (interface{}, error) {
+func run(pass *analysis.Pass) (interface{}, error) { // nolint:gocyclo
 	nodeFilter := []ast.Node{(*ast.CallExpr)(nil)}
 	i := pass.ResultOf[inspect.Analyzer].(*inspector.Inspector)
 	i.Preorder(nodeFilter, func(n ast.Node) {

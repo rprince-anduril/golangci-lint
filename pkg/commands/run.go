@@ -26,7 +26,7 @@ import (
 	"github.com/anduril/golangci-lint/pkg/result/processors"
 )
 
-const defaultFileMode = 0644
+const defaultFileMode = 0o644
 
 func getDefaultIssueExcludeHelp() string {
 	parts := []string{"Use or not use default excludes:"}
@@ -497,7 +497,7 @@ func (e *Executor) createPrinter(format string, w io.Writer) (printers.Printer, 
 func (e *Executor) executeRun(_ *cobra.Command, args []string) {
 	needTrackResources := e.cfg.Run.IsVerbose || e.cfg.Run.PrintResourcesUsage
 	trackResourcesEndCh := make(chan struct{})
-	defer func() {              // XXX: this defer must be before ctx.cancel defer
+	defer func() { // XXX: this defer must be before ctx.cancel defer
 		if needTrackResources { // wait until resource tracking finished to print properly
 			<-trackResourcesEndCh
 		}

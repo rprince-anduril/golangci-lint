@@ -10,6 +10,7 @@ import (
 	"gopkg.in/yaml.v3"
 
 	"github.com/anduril/golangci-lint/pkg/exitcodes"
+
 	"github.com/golangci/golangci-lint/test/testshared"
 )
 

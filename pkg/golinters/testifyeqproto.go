@@ -59,7 +59,7 @@ func runTestifyEqProto(pass *analysis.Pass) []goanalysis.Issue {
 			return // not a static call
 		} else if fn.FullName() != testifyAssertEqualMethod {
 			return
-		} else if len(call.Args) < 3 { // nolint:gomnd
+		} else if len(call.Args) < 3 {
 			return
 		}
 

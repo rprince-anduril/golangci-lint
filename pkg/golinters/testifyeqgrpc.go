@@ -126,7 +126,7 @@ func runFunc(pass *analysis.Pass, n ast.Node) []goanalysis.Issue { // nolint:goc
 			return true // not a static call
 		} else if fn.FullName() != testifyAssertEqualMethod {
 			return true
-		} else if len(call.Args) < 3 { // nolint:gomnd
+		} else if len(call.Args) < 3 {
 			return true
 		}
 
